@@ -88,13 +88,13 @@
   <script type="importmap">
     {
       "imports": {
-        "ss-web-components": "/node_modules/ss-web-components/dist/index.js"
+        "ss-web-components": "/dist/index.js"
       }
     }
   </script>
   <script type="module" async>
     await getStyles([
-      '/node_modules/ss-web-components/dist/bundle.css',
+      '/dist/bundle.css',
     ]);
 
     async function getStyles(urls = []) {
