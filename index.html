@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo</title>
+</head>
+<body>
+  <!-- <css-theme hex="#4095bf"></css-theme> -->
+  <data-grid id="fixedGrid" xheight="300px"
+    caption="User's Table"
+    is-full-width
+    is-striped
+    is-hoverable
+    allow-sort="true" allow-multi-sort="true"
+    filter-type="client"
+    page-size=5
+    rounded="15">
+    <data-grid-col header="" col="(item) => { return `${item.name.last}, ${item.name.first}`; }" type="bool" filter-by="none" width="60px">
+      <template>
+        <input class="row-selector" type="checkbox" data-trigger="click:broadcastEvent" data-function="selectRecord">
+      </template>
+    </data-grid-col>
+    <data-grid-col header="Photo" col="(item) => item.picture.large" type="photo" filter-by="none" width="110px">
+      <template>
+        <style>
+          img {
+            height: 64px;
+            width: 64px;
+            border-radius: 15px;
+          }
+        </style>
+        <img src="{{item.picture.large}}">
+      </template>
+    </data-grid-col>
+    <data-grid-col header="Full Name (Last, First)" col="(item) => { return `${item.name.last}, ${item.name.first}`; }" type="string" filter-by="starts-with" width="275px">
+      <template>
+        <a href="https://cnn.com" target="_blank">
+          ${item.name.last}, ${item.name.first}
+        </a>
+      </template>
+    </data-grid-col>
+    <data-grid-col header="Email" col="(item) => item.email" type="string" filter-by="not-equal" width="275px"></data-grid-col>
+    <data-grid-col header="Phone" col="(item) => toPhone(item.phone)" type="string" filter-by="contains" width="175px"></data-grid-col>
+    <data-grid-col header="Address" col="(item) => item.location.street.name" type="string" filter-by="starts-with" width="300px">
+      <template>
+        <div>
+          ${item.location.street.number} ${item.location.street.name}
+        </div>
+        <div>
+          ${item.location.city}, ${item.location.state} ${item.location.postcode}
+        </div>
+      </template>
+    </data-grid-col>
+    <data-grid-col header="Modified By" col="(item) => item.login.username" type="string" filter-by="starts-with" width="215px">
+      <template>
+        <div>
+          ${item.login.username}
+        </div>
+        <div>
+          ${toDate(item.registered.date)}
+        </div>
+      </template>
+    </data-grid-col>
+    <data-grid-col header="Actions" col="(item) => item.action" type="action" filter-by="none" width="140px">
+      <template>
+        <style>
+        </style>
+        <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="unlockRecord">
+          <span class="svg-icon font-large cursor-pointer">
+            <svg>
+              <use xlink:href="#lock-open"></use>
+            </svg>
+          </span>
+        </button>
+        <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="deleteRecord">
+            <span class="svg-icon font-large cursor-pointer">
+            <svg>
+              <use xlink:href="#trash"></use>
+            </svg>
+          </span>
+        </button>
+      </template>
+    </data-grid-col>
+  </data-grid>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "ss-web-components": "/node_modules/ss-web-components/dist/index.js"
+      }
+    }
+  </script>
+  <script type="module" async>
+    await getStyles([
+      '/node_modules/ss-web-components/dist/bundle.css',
+    ]);
+
+    async function getStyles(urls = []) {
+      const fetchArray = [];
+      urls.forEach(u => fetchArray.push(fetch(u)));
+      const values = await Promise.all(fetchArray);
+      for (let v of values) {
+        const css = await v.text();
+        const sheet = new CSSStyleSheet();
+        sheet.replaceSync(css);
+        document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+      }
+    }
+  </script>
+  <script src="index.js" type="module">
+  </script>
+</body>
+</html>

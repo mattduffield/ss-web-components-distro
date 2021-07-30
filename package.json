@@ -1,0 +1,13 @@
+{
+  "name": "ss-web-components-distro",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "python -m SimpleHTTPServer 8081"
+  },
+  "keywords": [],
+  "author": "Matthew Duffield",
+  "license": "MIT"
+}
