@@ -16,7 +16,8 @@
     allow-sort="true" allow-multi-sort="true"
     filter-type="client"
     page-size=5
-    rounded="15">
+    rounded="15"
+    styles-path="bundle.css">
     <data-grid-col header="" col="(item) => { return `${item.name.last}, ${item.name.first}`; }" type="bool" filter-by="none" width="60px">
       <template>
         <input class="row-selector" type="checkbox" data-trigger="click:broadcastEvent" data-function="selectRecord">
