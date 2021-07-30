@@ -12,10 +12,15 @@ The `data-grid` is meant for displaying data utilizing the HTML Table with some 
 ## Data Grid Example
 Execute the following in order to see the DataGrid in action:
 
+Ensure you have `http-server` installed:
+```
+npm install http-server -g
+```
+
+Next, execute the following command:
 ```
 npm run start
 ```
 
-The open your browser to `http://localhost:8081`
-
+Finally, open your browser to `http://localhost:8081`
 
