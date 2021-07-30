@@ -85,16 +85,9 @@
     </data-grid-col>
   </data-grid>
 
-  <script type="importmap">
-    {
-      "imports": {
-        "ss-web-components": "/dist/index.js"
-      }
-    }
-  </script>
   <script type="module" async>
     await getStyles([
-      '/dist/bundle.css',
+      'bundle.css',
     ]);
 
     async function getStyles(urls = []) {
