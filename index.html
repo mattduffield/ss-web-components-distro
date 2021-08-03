@@ -5,88 +5,152 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Demo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+  <link rel="stylesheet" href="bundle.css">
 </head>
-<body>
+<body class="main-background">
   <!-- <css-theme hex="#4095bf"></css-theme> -->
-  <data-grid id="fixedGrid" xheight="300px"
-    caption="User's Table"
-    is-full-width
-    is-striped
-    is-hoverable
-    allow-sort="true" allow-multi-sort="true"
-    filter-type="client"
-    page-size=5
-    rounded="15"
-    styles-path="bundle.css">
-    <data-grid-col header="" col="(item) => { return `${item.name.last}, ${item.name.first}`; }" type="bool" filter-by="none" width="60px">
-      <template>
-        <input class="row-selector" type="checkbox" data-trigger="click:broadcastEvent" data-function="selectRecord">
-      </template>
-    </data-grid-col>
-    <data-grid-col header="Photo" col="(item) => item.picture.large" type="photo" filter-by="none" width="110px">
-      <template>
-        <style>
-          img {
-            height: 64px;
-            width: 64px;
-            border-radius: 15px;
-          }
-        </style>
-        <img src="{{item.picture.large}}">
-      </template>
-    </data-grid-col>
-    <data-grid-col header="Full Name (Last, First)" col="(item) => { return `${item.name.last}, ${item.name.first}`; }" type="string" filter-by="starts-with" width="275px">
-      <template>
-        <a href="https://cnn.com" target="_blank">
-          ${item.name.last}, ${item.name.first}
-        </a>
-      </template>
-    </data-grid-col>
-    <data-grid-col header="Email" col="(item) => item.email" type="string" filter-by="not-equal" width="275px"></data-grid-col>
-    <data-grid-col header="Phone" col="(item) => toPhone(item.phone)" type="string" filter-by="contains" width="175px"></data-grid-col>
-    <data-grid-col header="Address" col="(item) => item.location.street.name" type="string" filter-by="starts-with" width="300px">
-      <template>
-        <div>
-          ${item.location.street.number} ${item.location.street.name}
-        </div>
-        <div>
-          ${item.location.city}, ${item.location.state} ${item.location.postcode}
-        </div>
-      </template>
-    </data-grid-col>
-    <data-grid-col header="Modified By" col="(item) => item.login.username" type="string" filter-by="starts-with" width="215px">
-      <template>
-        <div>
-          ${item.login.username}
-        </div>
-        <div>
-          ${toDate(item.registered.date)}
-        </div>
-      </template>
-    </data-grid-col>
-    <data-grid-col header="Actions" col="(item) => item.action" type="action" filter-by="none" width="140px">
-      <template>
-        <style>
-        </style>
-        <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="unlockRecord">
-          <span class="svg-icon font-large cursor-pointer">
-            <svg>
-              <use xlink:href="#lock-open"></use>
-            </svg>
-          </span>
-        </button>
-        <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="deleteRecord">
+  <div class="content">
+    <data-grid id="fixedGrid"
+      xcaption="User's Table"
+      is-full-width
+      xis-striped
+      is-hoverable
+      row-key="(item) => item.id.value"
+      allow-sort="true" allow-multi-sort="true"
+      filter-type="client"
+      page-size=5
+      rounded="15"
+      styles-path="bundle.css;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+      <data-grid-col header="" col="" type="bool" filter-by="none" width="60px">
+        <template id="column-template">
+          <input class="row-selector" type="checkbox" data-trigger="click:broadcastEvent" data-function="selectRecord">
+        </template>
+      </data-grid-col>
+      <data-grid-col header="Photo" col="(item) => item.picture.large" type="photo" filter-by="none" width="110px">
+        <template id="column-template">
+          <style>
+            img {
+              height: 48px;
+              width: 48px;
+              border-radius: 15px;
+            }
+          </style>
+          <img src="{{item.picture.medium}}">
+        </template>
+      </data-grid-col>
+      <data-grid-col header="Full Name (Last, First)" col="(item) => { return `${item.name.last}, ${item.name.first}`; }" type="string" filter-by="starts-with" width="275px">
+        <template id="filter-template">
+          <div class="header-group grid columns-2 column-gap-15">
+            <input class="header-control" type="search"
+              placeholder="Last"
+              data-path="name.last"
+              data-trigger="keydown:onFilter">
+            <input class="header-control" type="search"
+              placeholder="First"
+              data-path="name.first"
+              data-trigger="keydown:onFilter">
+          </div>
+        </template>
+        <template id="column-template">
+          <a class="link">
+            ${item.name.last}, ${item.name.first}
+          </a>
+        </template>
+      </data-grid-col>
+      <data-grid-col header="Email" col="(item) => item.email" type="string" filter-by="not-equal" width="275px">
+        <template id="filter-template">
+          <div class="header-group">
+            <input class="header-control" type="search"
+              placeholder="Email"
+              data-path="email"
+              data-trigger="keydown:onFilter">
+          </div>
+        </template>
+      </data-grid-col>
+      <data-grid-col header="Phone" col="(item) => toPhone(item.phone)" type="string" filter-by="contains" width="175px">
+        <template id="filter-template">
+          <div class="header-group">
+            <input class="header-control" type="search"
+              placeholder="Phone"
+              data-path="phone"
+              data-trigger="keydown:onFilter">
+          </div>
+        </template>
+      </data-grid-col>
+      <data-grid-col header="Address" col="(item) => item.location.street.name" type="string" filter-by="starts-with" width="300px">
+        <template id="filter-template">
+          <div class="header-group">
+            <input class="header-control" type="search"
+              placeholder="Street"
+              data-path="location.street.name"
+              data-trigger="keydown:onFilter">
+          </div>
+        </template>
+        <template id="column-template">
+          <div>
+            ${item.location.street.number} ${item.location.street.name}
+          </div>
+          <div>
+            ${item.location.city}, ${item.location.state} ${item.location.postcode}
+          </div>
+        </template>
+      </data-grid-col>
+      <data-grid-col header="Modified By" col="(item) => item.login.username" type="string" filter-by="starts-with" width="215px">
+        <template id="filter-template">
+          <div class="header-group">
+            <input class="header-control" type="search"
+              placeholder="Username"
+              data-path="login.username"
+              data-trigger="keydown:onFilter">
+          </div>
+        </template>
+        <template id="column-template">
+          <div>
+            ${item.login.username}
+          </div>
+          <div>
+            ${toDate(item.registered.date)}
+          </div>
+        </template>
+      </data-grid-col>
+      <data-grid-col header="Actions" col="(item) => item.action" type="action" filter-by="none" width="100px">
+        <template id="column-template">
+          <button class="is-locked form-button transparent" data-trigger="click:broadcastEvent" data-function="unlockRecord">
+            <i class="fa fa-lock"></i>
+          </button>
+          <button class="is-unlocked form-button transparent hidden">
+            <i class="fa fa-lock-open"></i>
+          </button>
+          <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="deleteRecord">
+            <i class="fa fa-trash"></i>
+          </button>
+          <!-- <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="unlockRecord">
             <span class="svg-icon font-large cursor-pointer">
-            <svg>
-              <use xlink:href="#trash"></use>
-            </svg>
-          </span>
-        </button>
-      </template>
-    </data-grid-col>
-  </data-grid>
-
-  <script type="module" async>
+              <svg>
+                <use xlink:href="#lock"></use>
+              </svg>
+            </span>
+          </button>
+          <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="unlockRecord">
+            <span class="svg-icon font-x-large cursor-pointer">
+              <svg>
+                <use xlink:href="#lock-open"></use>
+              </svg>
+            </span>
+          </button>
+          <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="deleteRecord">
+              <span class="svg-icon font-large cursor-pointer">
+              <svg>
+                <use xlink:href="#trash"></use>
+              </svg>
+            </span>
+          </button> -->
+        </template>
+      </data-grid-col>
+    </data-grid>
+  </div>
+  <!-- <script type="module" async>
     await getStyles([
       'bundle.css',
     ]);
@@ -102,7 +166,7 @@
         document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
       }
     }
-  </script>
+  </script> -->
   <script src="index.js" type="module">
   </script>
 </body>
