@@ -40,7 +40,7 @@
         </template>
       </data-grid-col>
       <data-grid-col header="Full Name (Last, First)" col="(item) => { return `${item.name.last}, ${item.name.first}`; }" type="string" filter-by="starts-with" width="275px">
-        <template id="filter-template">
+        <template id="header-template">
           <div class="header-group grid columns-2 column-gap-15">
             <input class="header-control" type="search"
               placeholder="Last"
@@ -59,7 +59,7 @@
         </template>
       </data-grid-col>
       <data-grid-col header="Email" col="(item) => item.email" type="string" filter-by="not-equal" width="275px">
-        <template id="filter-template">
+        <template id="header-template">
           <div class="header-group">
             <input class="header-control" type="search"
               placeholder="Email"
@@ -69,7 +69,7 @@
         </template>
       </data-grid-col>
       <data-grid-col header="Phone" col="(item) => toPhone(item.phone)" type="string" filter-by="contains" width="175px">
-        <template id="filter-template">
+        <template id="header-template">
           <div class="header-group">
             <input class="header-control" type="search"
               placeholder="Phone"
@@ -79,7 +79,7 @@
         </template>
       </data-grid-col>
       <data-grid-col header="Address" col="(item) => item.location.street.name" type="string" filter-by="starts-with" width="300px">
-        <template id="filter-template">
+        <template id="header-template">
           <div class="header-group">
             <input class="header-control" type="search"
               placeholder="Street"
@@ -97,7 +97,7 @@
         </template>
       </data-grid-col>
       <data-grid-col header="Modified By" col="(item) => item.login.username" type="string" filter-by="starts-with" width="215px">
-        <template id="filter-template">
+        <template id="header-template">
           <div class="header-group">
             <input class="header-control" type="search"
               placeholder="Username"
