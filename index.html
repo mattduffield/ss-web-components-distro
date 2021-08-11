@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Demo</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
-  <link rel="stylesheet" href="bundle.css">
+  <link id="font-awesome" rel="stylesheet" href="/assets/font-awesome/css/all.min.css">
+  <link id="ss-web-components" rel="stylesheet" href="bundle.css">
 </head>
 <body class="main-background">
   <!-- <css-theme hex="#4095bf"></css-theme> -->
@@ -20,8 +20,7 @@
       allow-sort="true" allow-multi-sort="true"
       filter-type="client"
       page-size=5
-      rounded="15"
-      styles-path="bundle.css;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+      rounded="15">
       <data-grid-col header="" col="" type="bool" filter-by="none" width="60px">
         <template id="column-template">
           <input class="row-selector" type="checkbox" data-trigger="click:broadcastEvent" data-function="selectRecord">
@@ -125,48 +124,10 @@
           <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="deleteRecord">
             <i class="fa fa-trash"></i>
           </button>
-          <!-- <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="unlockRecord">
-            <span class="svg-icon font-large cursor-pointer">
-              <svg>
-                <use xlink:href="#lock"></use>
-              </svg>
-            </span>
-          </button>
-          <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="unlockRecord">
-            <span class="svg-icon font-x-large cursor-pointer">
-              <svg>
-                <use xlink:href="#lock-open"></use>
-              </svg>
-            </span>
-          </button>
-          <button class="form-button transparent" data-trigger="click:broadcastEvent" data-function="deleteRecord">
-              <span class="svg-icon font-large cursor-pointer">
-              <svg>
-                <use xlink:href="#trash"></use>
-              </svg>
-            </span>
-          </button> -->
         </template>
       </data-grid-col>
     </data-grid>
   </div>
-  <!-- <script type="module" async>
-    await getStyles([
-      'bundle.css',
-    ]);
-
-    async function getStyles(urls = []) {
-      const fetchArray = [];
-      urls.forEach(u => fetchArray.push(fetch(u)));
-      const values = await Promise.all(fetchArray);
-      for (let v of values) {
-        const css = await v.text();
-        const sheet = new CSSStyleSheet();
-        sheet.replaceSync(css);
-        document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
-      }
-    }
-  </script> -->
   <script src="index.js" type="module">
   </script>
 </body>
