@@ -9,6 +9,9 @@ This build contains the following components:
 ## Data Grid
 The `data-grid` is meant for displaying data utilizing the HTML Table with some added features for making it easy to use.
 
+You can read more [here](./DATA-GRID.md)
+
+
 ## Data Grid Example
 Execute the following in order to see the DataGrid in action:
 
