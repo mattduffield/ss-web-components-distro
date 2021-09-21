@@ -1,4 +1,4 @@
-import {$} from '/bundle.js';
+import {$} from './bundle.js';
 
 const userRequest = await fetch('https://randomuser.me/api/?nat=us&results=150', {method: 'get'});
 const userResults = await userRequest.json();

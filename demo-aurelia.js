@@ -1,5 +1,5 @@
 import { Aurelia, IHttpClient, IRouter, RouterConfiguration, Route, Watch, CustomElement, ValueConverter, LifecycleHooks, bindable } from 'https://unpkg.com/aurelia/dist/native-modules/index.js';
-import {$, getTemplateById, DataGrid} from '/bundle.js';
+import {$, getTemplateById, DataGrid} from './bundle.js';
 
 const au = new Aurelia();
 const AppRoot = CustomElement.define({
