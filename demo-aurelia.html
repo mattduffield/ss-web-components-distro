@@ -53,7 +53,10 @@
             </div>
           </template>
           <template id="column-template">
-            <a class="link">
+            <a class="link ${item.gender == 'male' ? 'hidden' : ''}" style="background: blue; color: white;">
+              ${toProper(item.gender)}
+            </a>
+            <a class="link ${item.gender === 'female' ? 'hidden' : ''}" style="background: indigo; color: white;">
               ${toProper(item.gender)}
             </a>
           </template>

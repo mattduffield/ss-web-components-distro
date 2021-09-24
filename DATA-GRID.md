@@ -3,6 +3,10 @@ The `data-grid` is meant for displaying data utilizing the HTML Table with some 
 
 This data-grid supports filtering, sorting on single and multiple columns. Filtering is supported for both server-side and client-side scenarios. As a developer, you are able to provide your own template definition for both the header as well as the row column.
 
+<!--
+![Sample DataGrid](/path...png "Sample DataGrid")
+-->
+
 The following is a breakdown of the features in this `data-grid` that you can use.
 
 ## Properties on the Data Grid
@@ -347,6 +351,24 @@ The `data-grid` supports sorting on column types defined as the following:
 - **number** - The column will treat the column as a `<number>`
 
 If you provide any other type, sorting will be ignored by the `data-grid`.
+
+## Condition Render in Templates
+Sometimes you want to render markup conditionally. You can do this pretty easy as shown below:
+
+```html
+<template id="column-template">
+  <a class="link ${item.gender == 'male' ? 'hidden' : ''}"
+    style="background: blue; color: white;">
+    ${toProper(item.gender)}
+  </a>
+  <a class="link ${item.gender === 'female' ? 'hidden' : ''}"
+    style="background: indigo; color: white;">
+    ${toProper(item.gender)}
+  </a>
+</template>
+```
+
+In the example above, we are conditionally displaying two different anchor tags depending on if the `gender` value is `male` or `female`.
 
 
 ## Styles
