@@ -3,6 +3,8 @@ The `data-grid` is meant for displaying data utilizing the HTML Table with some 
 
 This data-grid supports filtering, sorting on single and multiple columns. Filtering is supported for both server-side and client-side scenarios. As a developer, you are able to provide your own template definition for both the header as well as the row column.
 
+You can see an example [here](https://mattduffield.github.io/ss-web-components-distro/)
+
 <!--
 ![Sample DataGrid](/path...png "Sample DataGrid")
 -->
