@@ -106,13 +106,17 @@
             </div>
           </template>
         </data-grid-col>
-        <data-grid-col header="Address" col="(item) => item.location.street.name" type="string" filter-by="starts-with" width="300px">
+        <data-grid-col header="Address" col="(item) => item.location.state" type="string" filter-by="starts-with" width="300px">
           <template id="header-template">
             <div class="header-group">
-              <input class="header-control" type="search"
-                placeholder="Street"
-                data-path="location.street.name"
-                data-trigger="keydown:onFilter">
+              <select class="header-control"
+                data-path="states"
+                data-element-property="selectedOptions.0.text"
+                data-trigger="
+                  keydown:onFilter
+                "
+              >
+              </select>
             </div>
           </template>
           <template id="column-template">
