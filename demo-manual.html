@@ -20,7 +20,14 @@
       filter-type="client"
       page-size=10
       rounded="10">
-      <data-grid-col header="" col="" type="bool" filter-by="none" width="60px">
+      <data-grid-col class="text-align-center" header="" col="" type="bool" filter-by="none" width="60px">
+        <template id="header-template">
+          <div class="header-group absolute">
+            <div class="font-small link1 plr-0">Toggle</div>
+            <input class="header-control" type="checkbox"
+              data-trigger="change:onCheckboxChanged">
+          </div>
+        </template>        
         <template id="column-template">
           <input class="row-selector" type="checkbox" data-trigger="click:broadcastEvent" data-function="selectRecord">
         </template>
